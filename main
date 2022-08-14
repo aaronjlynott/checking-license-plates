@@ -1,0 +1,39 @@
+#assume all letters are upper, MUST start 2 letters, # can't come in middle, no .space or punct
+def main():
+    plate = input("Plate: ")
+    if is_valid(plate):
+        print("Valid")
+    else:
+        print("Invalid")
+
+
+# while loop iterating over submission?
+def is_valid(s):
+    i=0
+    while i < len(s):
+        if s[i].isdigit() == True:
+            if s[i] == '0':
+                return False
+            else:
+                break
+        i += 1
+#check letter after number
+    for i in s:
+        if i.isdigit():
+            index = s.index(i)
+            if not s[index:].isdigit():
+                return False
+
+    if len(s) > 6 or len(s) < 2:  #check len
+        return False
+    if s[0:2].isalpha == False:  #check first two are letters
+        return False
+    for punc in s:
+        if punc in ['?' , ' ' , '.' , '!']: #check punc
+            return False
+
+    return True
+
+
+
+main()
